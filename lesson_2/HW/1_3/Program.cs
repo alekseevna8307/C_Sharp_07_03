@@ -8,10 +8,9 @@ if (num < 100)
 
 else
 {
-  int count = 1000;
-  while (num > count)
+  while (num > 999)
   {
-    int n = num / 10;
+   num = num / 10;
   }
   Console.WriteLine("Third digit = " + num % 10);
 }
