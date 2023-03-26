@@ -1,29 +1,28 @@
-﻿int GenerateNumber()
+﻿void Print(int[] arr)
 {
-  int number = new Random().Next(0, 1000);
-  return number;
-}
+  int size = arr.Length;
 
-
-int[] NewArray()
-{
-  int[] array = new int[8];
-
-  for (int i = 0; i < 8; i++)
+  for (int i = 0; i < size; i++)
   {
-    array[i] = GenerateNumber();
-  }
-  return array;
-}
-
-void PrintArray(int[] array)
-{
-  for (int i = 0; i < 8; i++)
-  {
-    Console.Write($"{array[i]} ");
+    Console.Write($"{arr[i]} ");
   }
   Console.WriteLine();
 }
 
-int[] array = NewArray();
-PrintArray(array);
+int[] EightMass(int size, int from, int to)
+{
+  int[] arr = new int[size];
+
+  for (int i = 0; i < size; i++)
+  {
+    arr[i] = new Random().Next(from, to + 1);
+  }
+  return arr;
+}
+
+int num = int.Parse(Console.ReadLine()!);
+int start = int.Parse(Console.ReadLine()!);
+int stop = int.Parse(Console.ReadLine()!);
+
+int[] mass = EightMass(num, start, stop);
+Print(mass);
