@@ -12,28 +12,31 @@
 double[] EightMass(int size, int from, int to)
 {
   double[] arr = new double[size];
-
-  for (int i = 0; i < size; i++)
+  Random n_new = new Random();
+  for (int i = 1; i < size; i++)
   {
-    arr[i] = new Random().Next(from, to + 1);
+    arr[i] = Math.Round(n_new.NextDouble() * (to - from) + from, 2);
   }
   return arr;
 }
 
-double Subtraction(double[] arr)
+void Subtraction(double[] arr)
 {
   double max = arr[0];
   double min = arr[0];
   for (int i = 1; i < arr.Length; i++)
   {
-    if (arr[i] > max) 
+    if (max < arr[i]) 
     max = arr[i];
 
-    else if (arr[i] < min) 
+    else if (min > arr[i]) 
     min = arr[i];
   }
-  return max-min;
+  Console.Write($"Max: {max}, min: {min}.");
+  Console.WriteLine($"Difference^ {max} - ({min}) = {Math.Round(max - min, 2)}");
 }
+
+
 
 int num = int.Parse(Console.ReadLine()!);
 int start = int.Parse(Console.ReadLine()!);
@@ -42,4 +45,4 @@ int stop = int.Parse(Console.ReadLine()!);
 double[] mass = EightMass(num, start, stop);
 Print(mass);
 
-Console.WriteLine(Subtraction(mass));
+Subtraction(mass);
