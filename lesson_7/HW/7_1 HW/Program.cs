@@ -1,4 +1,4 @@
-﻿void Print(int[,] arr)
+﻿void Print(double[,] arr)
 {
   for (int i = 0; i < arr.GetLength(0); i++)
   {
@@ -11,15 +11,16 @@
   Console.WriteLine();
 }
 
-int[,] MassNums(int row, int col, int from, int to)
+double[,] MassNums(int row, int col, int from, int to)
 {
-  int[,] arr = new int[row, col];
+  double[,] arr = new double[row, col];
+  Random n_new = new Random();
 
   for (int i = 0; i < row; i++)
   {
     for (int j = 0; j < col; j++)
     {
-      arr[i, j] = new Random().Next(from, to + 1);
+      arr[i, j] = Math.Round(n_new.NextDouble()*(to-from)+from, 2);
     }
   }
   return arr;
@@ -35,27 +36,7 @@ int start = int.Parse(Console.ReadLine()!);
 Console.Write("Enter the max number of massive: ");
 int stop = int.Parse(Console.ReadLine()!);
 
-int[,] mass = MassNums(rows, columns, start, stop);
+double[,] mass = MassNums(rows, columns, start, stop);
 Console.WriteLine();
 Print(mass);
-
-///////
-
-Console.Write("Enter number -> ");
-int n = int.Parse(Console.ReadLine()!);
-
-string PositionNum(int[,] arr, int num)
-{
-  for (int i = 0; i < arr.GetLength(0); i++)
-  {
-    for (int j = 0; j < arr.GetLength(1); j++)
-    {
-      if (arr[i, j] == num) return $"Enter number {num} -> [{i + 1}, {j + 1}]";
-    }
-  }
-  return $"Enter number {num} -> number not found";
-}
-
-
-Console.WriteLine(PositionNum(mass, n));
 
